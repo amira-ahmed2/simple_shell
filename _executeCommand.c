@@ -4,29 +4,37 @@
  * _executeCommand - executes a command
  * @comt: char car
  * @argv: char var
+ * @idex: index
  * Return: value of input int
  */
-int _executeCommand(char **comt, char **argv)
+int _executeCommand(char **comt, char **argv, int idex)
 {
-pid_t childFork;
-int statu;
-childFork = fork();
+	pid_t childFork;
+	int statu;
+	char *fullPaths;
 
-if (childFork == 0)
-{
-	if (execve(comt[0], comt, environ) == -1)
+	fullPaths = grtPaths(comt[0]);
+	if (!fullPaths)
 	{
-		/* code*/
-		perror(argv[0]);
+		print_Errors(argv[0], comt[0], idex);
 		freeArrStr(comt);
-		exit(127);
+		return (127);
 	}
-}
-else
-{
-	waitpid(childFork, &statu, 0);
-	freeArrStr(comt);
-}
-return (WEXITSTATUS(statu));
+	childFork = fork();
 
+	if (childFork == 0)
+	{
+		if (execve(comt[0], comt, environ) == -1)
+		{
+			free(fullPaths), fullPaths = NULL;
+			freeArrStr(comt);
+		}
+	}
+	else
+	{
+		waitpid(childFork, &statu, 0);
+		freeArrStr(comt);
+		free(fullPaths), fullPaths = NULL;
+	}
+	return (WEXITSTATUS(statu));
 }

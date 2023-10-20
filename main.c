@@ -10,7 +10,7 @@ int main(int argc, char **argv)
 {
 
 char *line = NULL;
-int status = 0;
+int status = 0, idex = 0;
 char **commt = NULL;
 (void) argc;
 
@@ -25,7 +25,7 @@ while (1)
 		write(STDOUT_FILENO, "\n", 1);
 		return (status);
 		}
-
+	idex++;
 
 	commt = tokenizerCommand(line);
 	if (!commt)
@@ -33,6 +33,6 @@ while (1)
 if (rebuilding(commt[0]))
 	callingExitOrEvn(commt, &status);
 else
-	status = _executeCommand(commt, argv);
+	status = _executeCommand(commt, argv, idex);
 }
 }
