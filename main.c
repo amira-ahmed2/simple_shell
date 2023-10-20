@@ -30,7 +30,9 @@ while (1)
 	commt = tokenizerCommand(line);
 	if (!commt)
 		continue;
-
+if (rebuilding(commt[0]))
+	callingExitOrEvn(commt, &status);
+else
 	status = _executeCommand(commt, argv);
 }
 }

@@ -20,6 +20,9 @@ char *displayPrompt(void);
 void freeArrStr(char **arr);
 char **tokenizerCommand(char *lne);
 int _executeCommand(char **comt, char **argv);
-
+void _exitCommand(char **comm, int *st);
+void _envCommand(char **comm, int *st);
+void callingExitOrEvn(char **commd, int *st);
+int rebuilding(char *commd);
 
 #endif
