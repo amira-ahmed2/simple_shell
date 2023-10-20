@@ -11,13 +11,13 @@ char *_getenv(char *nameVar)
 
 	for (i = 0; environ[i]; i++)
 	{
-		temp = strdup(environ[i]);
+		temp = _strdup(environ[i]);
 		key = strtok(temp, "=");
 		if (_strcmp(key, nameVar) == 0)
 		{
 			/* code */
 			value = strtok(NULL, "\n");
-			path = strdup(value);
+			path = _strdup(value);
 			free(temp);
 			return (path);
 		}

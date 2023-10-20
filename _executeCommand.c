@@ -24,7 +24,7 @@ int _executeCommand(char **comt, char **argv, int idex)
 
 	if (childFork == 0)
 	{
-		if (execve(comt[0], comt, environ) == -1)
+		if (execve(fullPaths, comt, environ) == -1)
 		{
 			free(fullPaths), fullPaths = NULL;
 			freeArrStr(comt);

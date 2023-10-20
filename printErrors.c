@@ -14,9 +14,9 @@ void print_Errors(char *n, char *cmdd, int num)
 	idx = _itoaCoveInt(num);
 
 	write(STDERR_FILENO, n, _strlen(n));
-	write(STDERR_FILENO, ":", 2);
+	write(STDERR_FILENO, ": ", 2);
 	write(STDERR_FILENO, idx, _strlen(idx));
-	write(STDERR_FILENO, ":", 2);
+	write(STDERR_FILENO, ": ", 2);
 	write(STDERR_FILENO, cmdd, _strlen(cmdd));
 	write(STDERR_FILENO, massege, _strlen(massege));
 	free(idx);
